@@ -1,4 +1,4 @@
-# "git clone" for a PWA
+# "git clone" as a PWA
 
 This is a quick and dirty proof-of-concept to show how you can use the new [File System Access API](https://web.dev/file-system-access/) to implement a `git clone`-like feature for a modern Web App.
 

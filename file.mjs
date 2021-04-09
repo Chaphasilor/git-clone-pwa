@@ -68,7 +68,7 @@ export class File {
       throw new Error(`Invalid URL! ('${url}')`, err)
     }
     
-    return this._write({
+    return await this._write({
       type: `url`,
       source: url.toString(),
     })

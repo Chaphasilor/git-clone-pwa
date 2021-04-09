@@ -22,7 +22,7 @@
     <h1
       class="text-3xl mb-6"
     >
-      "git clone" for a PWA
+      "git clone" as a PWA
     </h1>
 
     <h2
@@ -30,7 +30,7 @@
     >
       A proof-of-concept by <a class="text-blue-500 underline" href="https://github.com/Chaphasilor">@Chaphasilor</a>
     </h2>
-
+    <br>
     <h2
       class="text-xl"
     >
@@ -40,7 +40,7 @@
     <br>
 
     <div
-      class="w-1/2 mx-auto mb-2"
+      class="w-1/2 mx-auto mb-2 hidden"
     >
       Click the button right below to clone the contents of <a class="text-blue-500 underline" href="https://github.com/Chaphasilor/git-clone-pwa">this repository</a> to your local hard drive.<br>
       You'll need to select the parent directory <i class="italic">in which the project should be cloned into</i>.<br>
@@ -48,25 +48,62 @@
     </div>
     
     <button
-      class="p-2 bg-gray-800 text-white my-2 shadow-md rounded-md cursor-pointer"
+      class="p-2 bg-gray-800 text-white my-2 shadow-md rounded-md cursor-pointer hidden mb-10"
       id="clone-this-project"
     >
       Clone this project!
     </button>
+
+    
+    <br>
+
+    <div
+      class="w-1/2 mx-auto mb-2"
+    >
+      Click the button below to clone the contents of any GitHub repository to your local hard drive.<br>
+      You'll need to select the parent directory <i class="italic">in which the project should be cloned into</i>.<br>
+      (You'll need to grant permission <i class="italic">twice</i>)
+    </div>
+    
+    <input
+      class="p-2 border border-gray-800 rounded-md w-1/2"
+      type="text"
+      name="github-repo-url"
+      id="github-repo-url"
+      placeholder="GitHub Repository URL"
+    >
+    <br>
+    <button
+      class="p-2 bg-gray-800 text-white my-2 shadow-md rounded-md cursor-pointer"
+      id="clone-github-repo"
+    >
+      Clone GitHub Repo!
+    </button>
+
+    <div
+      class=""
+      id="output"
+    >
+
+    </div>
+    
+    <br>
+    <br>
+    <br>
     
     <div
-      class="mt-10 w-1/2 mx-auto mb-2"
+      class="mt-10 w-1/2 mx-auto mb-2 hidden"
     >
       If you want to use this tool with a different repository, you'll need to generate a JSON file in the right format, make sure the URLs of the files are CORS-enabled and then paste the JSON in the text area below.
     </div>
     
     <label
-      class="font-bold"
+      class="font-bold hidden"
       for="file-structure-input"
     >Paste the JSON for your <i class="italic">custom</i> project here:</label>
     <br>
     <textarea
-      class="border border-gray-800 rounded-md w-3/4"
+      class="border border-gray-800 rounded-md w-3/4 hidden"
       name="file-structure-input"
       id="file-structure-input"
       cols="100"
@@ -76,27 +113,27 @@
     <br>
     
     <button
-      class="p-2 bg-gray-800 text-white my-2 shadow-md rounded-md cursor-pointer"
+      class="p-2 bg-gray-800 text-white my-2 shadow-md rounded-md cursor-pointer hidden"
       id="clone-directory"
     >
       Clone Custom Project!
     </button>
 
     <h2
-      class="text-lg mb-4 mt-10"
+      class="text-lg mb-4 mt-10 hidden"
     >
       Debug-Stuff
     </h2>
 
     <button
-      class="p-2 bg-gray-800 text-white my-2 shadow-md rounded-md cursor-pointer"
+      class="p-2 bg-gray-800 text-white my-2 shadow-md rounded-md cursor-pointer hidden"
       id="test-directory"
     >
       Create Test Directory
     </button>
 
     <button
-      class="p-2 bg-gray-800 text-white my-2 ml-2 shadow-md rounded-md cursor-pointer"
+      class="p-2 bg-gray-800 text-white my-2 ml-2 shadow-md rounded-md cursor-pointer hidden"
       id="pick-root-directory"
     >
       Choose Root Directory
@@ -112,7 +149,12 @@
   </textarea>
   
   <script type="module">
+
     import * as fs from './fs.mjs'
+    import * as gh from './clone-github.mjs'
+
+    const cloneGithubRepoButton = document.querySelector(`#clone-github-repo`)
+    const output = document.querySelector(`#output`)
 
     let root
     
@@ -193,8 +235,46 @@
 
 
     })
-    
-    
+
+    cloneGithubRepoButton.addEventListener(`click`, async () => {
+
+      cloneGithubRepoButton.innerText = `Loading Repo...`
+      cloneGithubRepoButton.classList.remove(`bg-gray-800`)
+      cloneGithubRepoButton.classList.add(`bg-gray-600`)
+      
+      const dirStructure = await gh.cloneGithubRepo(document.querySelector(`#github-repo-url`).value)
+
+      cloneGithubRepoButton.innerText = `Clone GitHub Repo!`
+      cloneGithubRepoButton.classList.add(`bg-gray-800`)
+      cloneGithubRepoButton.classList.remove(`bg-gray-600`)
+
+      console.log(`dirStructure:`, dirStructure)
+
+      output.innerText = `Now select the directory you want to clone into and grant the needed permissions (will prompt)`
+      
+      root = await new fs.RootDirectory(true) // request read- and write-access
+
+      if (!root) {
+        output.innerText = `Seems like you didn't select a directory... :)`
+        return
+      }
+
+      output.innerText = `Cloning '${dirStructure.name}' into '${root.name}'...`
+
+      const startTime = Date.now()
+      
+      try {
+
+        const clonedDir = await fs.cloneDirectoryFromJSON(root, JSON.stringify(dirStructure))
+
+        output.innerText = `Done! Cloned '${clonedDir.name}' into '${root.name}' in ${((Date.now()-startTime) / 1000).toFixed(2)} seconds!`
+
+      } catch (err) {
+        output.innerText = `Something went wrong: ${err.message}`
+      }
+
+    })
+
   </script>
   
 </body>

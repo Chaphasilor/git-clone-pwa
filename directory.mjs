@@ -66,7 +66,21 @@ export class RootDirectory extends Directory {
 
   async init() {
 
-    this.handle = await window.showDirectoryPicker()
+    try {
+
+      this.handle = await window.showDirectoryPicker()
+
+      if (this.writeAccess) {
+        const fileHandle = await this.handle.getFileHandle(`ENABLE_WRITE_ACCESS`, {
+          create: true,
+        })
+        await this.handle.removeEntry(fileHandle.name)
+      }
+      
+    } catch (err) {
+      throw new Error(`User denied access!`)
+    }
+
     return this
 
   }
