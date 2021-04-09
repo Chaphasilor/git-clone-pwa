@@ -2,7 +2,63 @@
 
 This is a quick and dirty proof-of-concept to show how you can use the new [File System Access API](https://web.dev/file-system-access/) to implement a `git clone`-like feature for a modern Web App.
 
-**To test it out**:
+**To try is out online**:
+
+1. Go to https://chaphasilor.github.io/git-clone-pwa/
+2. Paste the following:
+    ```json
+    {
+      "name": "pwa-clone-test",
+      "directories": [
+         {
+            "name": "test-directory",
+            "directories": [],
+            "files": [
+            {
+               "name": "another-file.md",
+               "url": "https://chaphasilor.github.io/git-clone-pwa/another-file.md"
+            }
+            ]
+         }
+      ],
+      "files": [
+         {
+            "name": "directory.mjs",
+            "url": "https://chaphasilor.github.io/git-clone-pwa/directory.mjs"
+         },
+         {
+            "name": "file.mjs",
+            "url": "https://chaphasilor.github.io/git-clone-pwa/file.mjs"
+         },
+         {
+            "name": "fs.mjs",
+            "url": "https://chaphasilor.github.io/git-clone-pwa/fs.mjs"
+         },
+         {
+            "name": "index.html",
+            "url": "https://chaphasilor.github.io/git-clone-pwa/index.html"
+         },
+         {
+            "name": "LICENSE",
+            "url": "https://chaphasilor.github.io/git-clone-pwa/LICENSE"
+         }
+         {
+            "name": "pwa-clone-test.json",
+            "url": "https://chaphasilor.github.io/git-clone-pwa/pwa-clone-test.json"
+         }
+         {
+            "name": "README.md",
+            "url": "https://chaphasilor.github.io/git-clone-pwa/README.md"
+         }
+         {
+            "name": "test-file",
+            "url": "https://chaphasilor.github.io/git-clone-pwa/test-file"
+         }
+      ]
+      }
+    ```
+
+**To try it out locally**:
 
 1. Download the files inside this directory (or clone the whole repo)
 2. Run `npx serve` inside the `git-clone-pwa`-folder. This starts a web server on `localhost:5000`
