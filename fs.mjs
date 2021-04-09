@@ -5,7 +5,7 @@ export async function cloneDirectoryFromJSON(parentDir, json) {
 
   const parsed = JSON.parse(json)
 
-  let clonedRoot = await cloneDirectoryRecursive(parentDir, parsed)
+  return await cloneDirectoryRecursive(parentDir, parsed)
   
 }
 
