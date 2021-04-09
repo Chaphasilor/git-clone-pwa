@@ -58,15 +58,14 @@
     <br>
 
     <div
-      class="w-1/2 mx-auto mb-2"
+      class="w-1/2 mx-auto mb-2 text-lg"
     >
       Click the button below to clone the contents of any GitHub repository to your local hard drive.<br>
-      You'll need to select the parent directory <i class="italic">in which the project should be cloned into</i>.<br>
-      (You'll need to grant permission <i class="italic">twice</i>)
+      (Heads-Up: The ".git" directory isn't yet included)
     </div>
     
     <input
-      class="p-2 border border-gray-800 rounded-md w-1/2"
+      class="p-2 border mt-4 mb-2 border-gray-800 rounded-md w-1/2"
       type="text"
       name="github-repo-url"
       id="github-repo-url"
@@ -74,17 +73,16 @@
     >
     <br>
     <button
-      class="p-2 bg-gray-800 text-white my-2 shadow-md rounded-md cursor-pointer"
+      class="p-3 bg-gray-800 text-white my-2 shadow-md rounded-md cursor-pointer text-lg"
       id="clone-github-repo"
     >
       Clone GitHub Repo!
     </button>
 
     <div
-      class=""
+      class="italic text-lg mt-4"
       id="output"
     >
-
     </div>
     
     <br>
