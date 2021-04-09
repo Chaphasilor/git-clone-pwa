@@ -16,7 +16,7 @@ This is a quick and dirty proof-of-concept to show how you can use the new [File
             "files": [
             {
                "name": "another-file.md",
-               "url": "https://chaphasilor.github.io/git-clone-pwa/another-file.md"
+               "url": "https://chaphasilor.github.io/git-clone-pwa/test-directory/another-file.md"
             }
             ]
          }
@@ -41,21 +41,21 @@ This is a quick and dirty proof-of-concept to show how you can use the new [File
          {
             "name": "LICENSE",
             "url": "https://chaphasilor.github.io/git-clone-pwa/LICENSE"
-         }
+         },
          {
             "name": "pwa-clone-test.json",
             "url": "https://chaphasilor.github.io/git-clone-pwa/pwa-clone-test.json"
-         }
+         },
          {
             "name": "README.md",
             "url": "https://chaphasilor.github.io/git-clone-pwa/README.md"
-         }
+         },
          {
             "name": "test-file",
             "url": "https://chaphasilor.github.io/git-clone-pwa/test-file"
          }
       ]
-      }
+   }
     ```
 
 **To try it out locally**:
