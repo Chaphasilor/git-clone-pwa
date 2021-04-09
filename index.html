@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Git Clone PWA Demo</title>
+  
+</head>
+<body>
+  
+  <button
+    id="test-directory"
+  >
+    Create Test Directory
+  </button>
+
+  <br>
+  <br>
+  <br>
+
+  <button
+    id="pick-root-directory"
+  >
+    Choose Root Directory
+  </button>
+
+  <br>
+  
+  <textarea name="file-structure-input" id="file-structure-input" cols="70" rows="30"></textarea>
+
+  <br>
+  
+  <button
+    id="clone-directory"
+  >
+    Clone Directory!
+  </button>
+  
+  <script type="module">
+    import * as fs from './fs.mjs'
+
+    let root
+    
+    document.querySelector(`#test-directory`).addEventListener(`click`, async () => {
+
+      root = await new fs.RootDirectory(true)
+
+      console.log(`root:`, root)
+      console.log(`await root.getEntries():`, await root.getEntries())
+
+      let newDir = await new fs.Directory(root, `test1`)
+
+      console.log(`newDir:`, newDir)
+      console.log(`await newDir.getEntries():`, await newDir.getEntries())
+
+      let newFile = await new fs.File(newDir, `README.md`)
+
+      console.log(`newFile:`, newFile)
+      // await newDir.delete()
+
+      await newFile.writeText(`# Hello, World!\n`)
+
+      let placeholderJSON = await new fs.File(newDir, `photos.json`)
+
+      await placeholderJSON.writeUrl(`https://jsonplaceholder.typicode.com/photos/10`)
+
+      let testImage = await new fs.File(newDir, `phone-number.jpg`)
+
+      await testImage.writeUrl(`https://i.imgur.com/nDHK3aA.jpg`)
+
+    })
+
+    document.querySelector(`#pick-root-directory`).addEventListener(`click`, async () => {
+
+      root = await new fs.RootDirectory(true)
+      
+    })
+
+    document.querySelector(`#clone-directory`).addEventListener(`click`, async () => {
+
+      if (!root) {
+        return alert(`Please choose a root directory first!`)
+      }
+
+      fs.cloneDirectoryFromJSON(root, document.querySelector(`#file-structure-input`).value)
+      
+    })
+    
+    
+  </script>
+  
+</body>
+</html>

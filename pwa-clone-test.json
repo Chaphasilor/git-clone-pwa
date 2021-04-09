@@ -1,0 +1,150 @@
+{
+  "name": "pwa-clone-test",
+  "directories": [
+    {
+      "name": "test-dir-1",
+      "directories": [
+        {
+          "name": "test-dir-1",
+          "directories": [
+            {
+              "name": "test-dir-1",
+              "directories": [],
+              "files": [
+                {
+                  "name": "test-file-1",
+                  "url": "http://localhost:5000/test-file"
+                },
+                {
+                  "name": "test-file-2",
+                  "url": "http://localhost:5000/test-file"
+                }
+              ]
+            },
+            {
+              "name": "test-dir-2",
+              "directories": [],
+              "files": [
+                {
+                  "name": "test-file-1",
+                  "url": "http://localhost:5000/test-file"
+                },
+                {
+                  "name": "test-file-2",
+                  "url": "http://localhost:5000/test-file"
+                }
+              ]
+            }
+          ],
+          "files": [
+            {
+              "name": "test-file-1",
+              "url": "http://localhost:5000/test-file"
+            },
+            {
+              "name": "test-file-2",
+              "url": "http://localhost:5000/test-file"
+            }
+          ]
+        },
+        {
+          "name": "test-dir-2",
+          "directories": [],
+          "files": []
+        }
+      ],
+      "files": [
+        {
+          "name": "test-file-1",
+          "url": "http://localhost:5000/test-file"
+        },
+        {
+          "name": "test-file-2",
+          "url": "http://localhost:5000/test-file"
+        }
+      ]
+    },
+    {
+      "name": "test-dir-2",
+      "directories": [
+        {
+          "name": "test-dir-1",
+          "directories": [
+            {
+              "name": "test-dir-1",
+              "directories": [],
+              "files": []
+            },
+            {
+              "name": "test-dir-2",
+              "directories": [],
+              "files": []
+            }
+          ],
+          "files": [
+            {
+              "name": "test-file-1",
+              "url": "http://localhost:5000/test-file"
+            },
+            {
+              "name": "test-file-2",
+              "url": "http://localhost:5000/test-file"
+            }
+          ]
+        },
+        {
+          "name": "test-dir-2",
+          "directories": [],
+          "files": []
+        }
+      ],
+      "files": [
+        {
+          "name": "test-file-1",
+          "url": "http://localhost:5000/test-file"
+        },
+        {
+          "name": "test-file-2",
+          "url": "http://localhost:5000/test-file"
+        }
+      ]
+    },
+    {
+      "name": "test-dir-3",
+      "directories": [],
+      "files": []
+    },
+    {
+      "name": "test-dir-4",
+      "directories": [],
+      "files": []
+    },
+    {
+      "name": "test-dir-5",
+      "directories": [],
+      "files": []
+    }
+  ],
+  "files": [
+    {
+      "name": "test-file-1",
+      "url": "http://localhost:5000/test-file"
+    },
+    {
+      "name": "test-file-2",
+      "url": "http://localhost:5000/test-file"
+    },
+    {
+      "name": "test-file-3",
+      "url": "http://localhost:5000/test-file"
+    },
+    {
+      "name": "test-file-4",
+      "url": "http://localhost:5000/test-file"
+    },
+    {
+      "name": "test-file-5",
+      "url": "http://localhost:5000/test-file"
+    }
+  ]
+}
