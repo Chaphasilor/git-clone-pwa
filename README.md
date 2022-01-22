@@ -12,3 +12,4 @@ This is a quick and dirty proof-of-concept to show how you can use the new [File
   Sorry folks, no `git clone` for mobile users :P
 - The `.git` directory won't be created by this tool  
   This could be added in the future, if there is demand...
+- You can't select "System" folders (AppData, anything that requires elevated permissions, etc.)
